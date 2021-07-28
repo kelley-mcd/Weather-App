@@ -1,19 +1,23 @@
-var searchFormEl = document.querySelector('#search-form');
+const WeathAPIkey = "38d375f0ae73a2b7f0a1570df2ff4387";
 
-function handleSearchFormSubmit(event) {
-  event.preventDefault();
+const searchCity = document.querySelector('#search-input');
 
-  var searchInputVal = document.querySelector('#search-input').value;
-  var formatInputVal = document.querySelector('#format-input').value;
+const fetchButton = document.querySelector('#fetch-button');
 
-  if (!searchInputVal) {
-    console.error('You need a search input value!');
-    return;
-  }
 
-  var queryString = './search-results.html?q=' + searchInputVal + '&format=' + formatInputVal;
+function getApi() {
+  let requestURL= "http://api.openweathermap.org/data/2.5/weather?q=" + searchCity + "&appid=" + WeathAPIkey;
 
-  location.assign(queryString);
+  fetch(requestURL)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        console.log(data)
+     data.forEach(function(e) {
+        searchCity.append(document.querySelector("<h5>").text(e.login), document.querySelector("<p>").text(e.url));
+      })
+    });
 }
+fetchButton.addEventListener("submit", getApi());
 
-searchFormEl.addEventListener('submit', handleSearchFormSubmit);

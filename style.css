@@ -1,13 +1,11 @@
-body {
-  font-family: 'Fira Sans', sans-serif;
+.jumbotron {
+    text-align: center;
+    background-color: rgb(56, 26, 194);
+    border: 1px, black;
+    color: whitesmoke;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Merriweather', serif;
-  font-weight: 700;
+
+.recent-searches {
+    text-decoration: underline;
 }
